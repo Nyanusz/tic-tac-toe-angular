@@ -1,0 +1,20 @@
+<div class="game">
+  <h1>Tic Tac Toe</h1>
+
+  <div *ngIf="!gameStarted" class="symbol-select">
+    <h2>Válassz jelet:</h2>
+    <button (click)="chooseSymbol('X')">X</button>
+    <button (click)="chooseSymbol('O')">O</button>
+  </div>
+
+  <div *ngIf="gameStarted">
+    <h2 *ngIf="winner">{{ winner }}</h2>
+    <h2 *ngIf="!winner">
+      {{ currentPlayer === 'player' ? 'Te jössz!' : 'A gép gondolkodik...' }}
+    </h2>
+
+    <app-board [board]="board" (cellClicked)="makeMove($event)"></app-board>
+
+    <button (click)="resetGame()">Új játék ugyanazzal a jellel</button>
+  </div>
+</div>
